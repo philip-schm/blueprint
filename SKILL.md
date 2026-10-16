@@ -115,7 +115,12 @@ Requirements
 - Hand over with a short summary and the list of open questions (Q).
 - The user answers by ID ("Q1: yes", "S3.b: more detail"). Update `PLAN.typ` first, recompile,
   check the PDF, and report what changed (by ID).
-- Repeat until the user says "go" (or similar). Do **not** start building before that.
+- Repeat until the user explicitly approves the plan. Do **not** start building before that.
+- **Approval gate:** before the first build action, check that
+  1. no open question (Q) is unanswered – if one is, ask it; never assume an answer, and
+  2. the approval is unambiguous – a short "go" / "ok" right after answering a side question may
+     just mean "continue". Then ask once with AskUserQuestion: "Approve the plan and start building?"
+- Building without this gate costs the user's trust and means throwing work away.
 
 ## Phase 4 – Build
 
