@@ -35,17 +35,25 @@
 
 // Glossary: each entry is (id, term, ui-label, code, meaning, distinction)
 // For non-code projects ui-label and code are ignored.
+// S3.b – the table is sorted A to Z by term (BLU-01); the term is a plain
+// string in quotes, e.g. "Check area" (BLU-02). Umlauts sort like their base letter.
+#let sort-key(term) = lower(term).replace("ä", "a").replace("ö", "o").replace("ü", "u").replace("ß", "ss")
 #let glossary(..entries) = {
+  for e in entries.pos() {
+    assert(type(e.at(1)) == str,
+      message: "glossary term must be plain text in quotes, e.g. \"Check area\": " + repr(e.at(1)))
+  }
+  let entries = entries.pos().sorted(key: e => sort-key(e.at(1)))
   if code-project {
     set text(size: 9.5pt)
     tbl((auto, 1fr, 1fr, 1.1fr, 1.6fr, 1.5fr),
       [*ID*], [*Term*], [*UI label*], [*Code*], [*Meaning*], [*Distinction / don't use*],
-      ..entries.pos().map(e => (e.at(0), e.at(1), e.at(2), e.at(3), e.at(4), e.at(5))).flatten(),
+      ..entries.map(e => (e.at(0), e.at(1), e.at(2), e.at(3), e.at(4), e.at(5))).flatten(),
     )
   } else {
     tbl((auto, auto, 1fr, 1fr),
       [*ID*], [*Term*], [*Meaning*], [*Distinction / don't use*],
-      ..entries.pos().map(e => (e.at(0), e.at(1), e.at(4), e.at(5))).flatten(),
+      ..entries.map(e => (e.at(0), e.at(1), e.at(4), e.at(5))).flatten(),
     )
   }
 }
@@ -123,7 +131,7 @@ Every item has a fixed ID, so it can be referred to exactly (e.g. "change S6.b",
 = 2. Glossary (G)
 
 #glossary(
-  ([G1], [#todo[Term]], [#todo[label on screen]], [#todo[name in code]], [#todo[meaning]], [#todo[not to confuse with … / don't say …]]),
+  ([G1], "TODO term", [#todo[label on screen]], [#todo[name in code]], [#todo[meaning]], [#todo[not to confuse with … / don't say …]]),
 )
 
 = 3. Requirements (AREA-NN)

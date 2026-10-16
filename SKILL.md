@@ -63,6 +63,9 @@ A table; every term used in the plan, the code and the chat must come from it.
   - *Distinction / don't use* = what it is not, and synonyms that must not be used.
 - **Non-code projects:** `ID | Term | Meaning | Distinction / don't use`
 - Translate the column names when the plan is in another language.
+- The template sorts the table A to Z by the *Term* column when compiling. Write the term as plain
+  text in quotes (`"Check area"`), not as content (`[Check area]`). IDs keep their number (R1), so
+  the ID column is not in order.
 
 ### Requirements (AREA-NN)
 
@@ -120,6 +123,11 @@ Requirements
   1. no open question (Q) is unanswered – if one is, ask it; never assume an answer, and
   2. the approval is unambiguous – a short "go" / "ok" right after answering a side question may
      just mean "continue". Then ask once with AskUserQuestion: "Approve the plan and start building?"
+     with the options "Approve and build" (Recommended) and "Run a critical review first".
+- **Critical review:** if the user picks "Run a critical review first", read `criticism/SKILL.md`
+  (next to this file) and follow it; the original intent comes from this conversation. Afterwards
+  return to the approval gate: open Q items first, then the approval question again. If
+  `criticism/SKILL.md` is missing, say so and ask the approval question without that option.
 - Building without this gate costs the user's trust and means throwing work away.
 
 ## Phase 4 – Build
