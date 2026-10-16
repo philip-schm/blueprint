@@ -12,7 +12,9 @@ if command -v typst >/dev/null 2>&1; then
   typst compile "$src" "$out"
 else
   venv="${TMPDIR:-/tmp}/blueprint-typst-venv"
-  if [ ! -x "$venv/bin/python" ]; then
+  # (Re)install if the venv is missing or an earlier install failed half-way.
+  if ! "$venv/bin/python" -c 'import typst' >/dev/null 2>&1; then
+    rm -rf "$venv"
     python3 -m venv "$venv"
     "$venv/bin/pip" install -q typst
   fi
