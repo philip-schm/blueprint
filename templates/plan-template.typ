@@ -118,8 +118,9 @@ Every item has a fixed ID, so it can be referred to exactly (e.g. "change S6.b",
 - #id[R5] Guides and READMEs start each heading with its step ID and mention
   files by ID.
 - #id[R6] Feedback refers to IDs. The plan is updated first, then the work.
-- #id[R7] Only glossary terms are used. A new term is added to the glossary
-  before it is used.
+- #id[R7] Use canonical glossary names for domain concepts, roles and key actions in
+  project work. Add new domain terms before use. Ordinary language and explanatory synonyms
+  are allowed; preserve required external identifiers.
 
 = 1. Decisions – what I understood (D)
 
@@ -138,7 +139,7 @@ Every item has a fixed ID, so it can be referred to exactly (e.g. "change S6.b",
 
 == #todo[AREA] – #todo[area name]
 
-- #id[#todo[AREA]-01] #todo[one sentence, glossary terms only]
+- #id[#todo[AREA]-01] #todo[one sentence using canonical domain names]
 
 // ---------- Project-specific sections (4 …) go here ----------
 

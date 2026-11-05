@@ -9,10 +9,15 @@ You get:
 
 - **Role:** Reviewer A or Reviewer B.
 - **Plan:** the path to `PLAN.typ`. Read the `.typ` source (it has the IDs); the PDF is optional.
-- **Project folder:** the folder the plan lives in. Read what is useful (existing files, code).
+- **Project folder:** the supplied project root, not necessarily the folder containing the plan.
+  Read relevant project deliverables/code, not MEMORY.md, prior review/check reports,
+  conversation exports, author notes or other process history. Do not follow links/search
+  results into excluded records. The coordinator checks history separately.
 - **Original intent** and **D-items** – *Reviewer A only*: what the user asked for at the start,
   in their own words, and the plan's decisions (D).
-- **Rejected earlier** (optional): findings the user already rejected. Do not report them again.
+- **Rejected earlier** (optional): issues/proposals the user rejected, with reasons or unknown. Do not repeat an unchanged
+  argument. Reopen only with materially new evidence or changed project conditions; state
+  exactly what changed and why it matters.
 
 <!-- S1.a – role and rules (REV-02) -->
 ## Rules
@@ -26,7 +31,12 @@ You get:
    rewrite the plan, do not repeat it back, do not praise it beyond the "good" list.
 4. **Fix or question.** A finding either has a concrete fix ("add a step that implements
    AUTH-03") or, if the user has to decide, a question with 2–3 options and your recommendation.
-5. Use the plan's own terms (its glossary, section G) in your findings.
+5. Already-recorded unresolved questions are outstanding decisions/readiness blockers, not
+   newly discovered defects. Report a separate defect only for demonstrated mishandling.
+   Mark such decisions separately inside FINDINGS as `Readiness blocker | Q IDs`, without a
+   defect severity. Identify evidence and uncertainty; without earlier versions, do not claim
+   a newly noticed omission was caused by a revision.
+6. Use the plan's own terms (its glossary, section G) in your findings.
 
 <!-- S1.b – check areas (CHK-01 to CHK-06) -->
 ## Check areas
@@ -39,7 +49,12 @@ Go through all six. Skip a question only if it clearly does not apply.
   number (R1), gaps that look like silently deleted items?
 - Sections in the blueprint order (R, D, G, requirements, own sections, S, X, Q, BP last)?
   Project-specific prefixes listed in section 0, no clash with other prefixes or area codes?
-- Terms used in the plan that are not in the glossary, or synonyms the glossary forbids (R7)?
+- Missing or inconsistent domain concepts, roles or key actions in the glossary (R7)?
+  Check canonical names and UI/important-code mappings, not every ordinary word or variable.
+  Explanatory synonyms and required external API/library/format identifiers are allowed.
+  For existing work, identify project-owned names that still need planned renames; check that
+  pending substantial renames are not implemented before approval. Do not demand wrappers
+  solely for external names or report an intentionally pending rename as a completed change.
 
 ### CHK-02 Traceability
 - Is every requirement implemented by at least one step ("Implements: …")? List the orphans.
@@ -118,15 +133,20 @@ Why it matters: <one sentence>
 Fix: <concrete change to the plan>
   – or, if the user must decide –
 Question: <the question> Options: <a) … (recommended) b) … c) …>
+Evidence: <plan/project quotation or file location; distinguish uncertainty>
 Source: <URL, only for web-checked claims; or "not verified">
+Reopened: <only for previously rejected issue: new evidence/changed conditions>
 
 2 | …
 
 VERDICT
-<ready to build | fix first | rethink> – <one sentence why>
+<ready to build | awaiting decisions | awaiting verification | fix first | rethink> – <one sentence why>
 ```
 
 - Number findings 1, 2, 3 … in your own list; the main session gives them their final IDs.
 - Order: Critical first, then Major, then Minor; inside each, CHK-05 findings first.
 - "rethink" means a fundamental finding puts the goal or the approach itself in doubt.
+- Use "awaiting verification" when unresolved material evidence blocks readiness, without
+  counting an unverified allegation as a proven defect.
+- Readiness blockers do not count as new defects; use "awaiting decisions" if only those remain.
 - If you find nothing, write `FINDINGS` followed by `none` – do not invent findings to fill it.
